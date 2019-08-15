@@ -20,6 +20,7 @@ app.post('/pdf', function (req,res) {
     const stream = new Readable();
     stream._read = () => {};
     var MD = req.body.MD;
+    // what does line 24 do?
     res.set('Content-Disposition', 'attachment');
     res.set('Content-type', 'application/pdf');
     stream.pipe(markdownpdf())
@@ -27,5 +28,9 @@ app.post('/pdf', function (req,res) {
     stream.push(MD);
     stream.push(null);
 })
+
+// MORE REQUIREMENTS 
+// user be able to download in different formats
+// user can specify file name in a different input
 
 app.listen(1337)
